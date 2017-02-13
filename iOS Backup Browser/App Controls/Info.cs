@@ -1,5 +1,6 @@
 ﻿namespace iOS_Backup_Browser.App_Controls
 {
+    using System.Drawing;
     using System.Globalization;
     using System.Windows.Forms;
     using iOS_Backup_Browser.Properties;
@@ -26,35 +27,35 @@
             if (backup.ProductName == null)
                 return;
 
-            switch (backup.ProductName.ToLower().Trim())
+            deviceImage.Image = GetImageForDevice(backup.ProductName);
+        }
+
+        public Bitmap GetImageForDevice(string deviceName)
+        {
+            switch (deviceName.ToLower().Trim())
             {
                 case "iphone 4":
-                    deviceImage.Image = Resources.iPhone_4;
-                    break;
+                    return Resources.iPhone_4;
                 case "iphone 4s":
-                    deviceImage.Image = Resources.iPhone_4s;
-                    break;
+                    return Resources.iPhone_4s;
                 case "iphone 5":
-                    deviceImage.Image = Resources.iPhone_5;
-                    break;
+                    return Resources.iPhone_5;
                 case "iphone 5c":
-                    deviceImage.Image = Resources.iPhone_5C;
-                    break;
+                    return Resources.iPhone_5C;
                 case "iphone 5s":
-                    deviceImage.Image = Resources.iPhone_5s;
-                    break;
+                    return Resources.iPhone_5s;
                 case "iphone 6":
-                    deviceImage.Image = Resources.iPhone_6;
-                    break;
+                    return Resources.iPhone_6;
                 case "iphone 6s":
-                    deviceImage.Image = Resources.iPhone_6S;
-                    break;
+                    return Resources.iPhone_6S;
+                case "iphone 7":
+                    return Resources.iPhone_7;
                 case "ipad air":
-                    deviceImage.Image = Resources.iPad_air;
-                    break;
+                    return Resources.iPad_air;
                 case "ipad air 2":
-                    deviceImage.Image = Resources.iPad_air_2;
-                    break;
+                    return Resources.iPad_air_2;
+                default:
+                    return null;
             }
         }
     }

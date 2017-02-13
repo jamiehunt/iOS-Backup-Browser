@@ -160,6 +160,16 @@ namespace iOS_Backup_Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iPhone_7 {
+            get {
+                object obj = ResourceManager.GetObject("iPhone_7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We did not detect any iOS backups at the default location, please configure the iOS backup path in Preferences..
         /// </summary>
         internal static string Main_iOS_Backup_Path_Invalid {
