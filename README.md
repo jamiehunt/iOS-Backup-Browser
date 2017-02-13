@@ -1,2 +1,8 @@
 # iOS-Backup-Browser
-Utility for browsing iOS Backups
+iOS Backup Browser is a utility for browsing iOS Backups.
+
+The project is currently under active development, in the proof of concept stage, please feel free to contribute and submit a pull request.
+
+Currently have support for browsing Device backup metadata, Contacts, Call History, Messages, and Notes.
+
+Support for Voicemails, Voice Memos, Internet, Photos, Applications, Raw Data and iCloud integration is currently undergoing development and should be available in a future release.
