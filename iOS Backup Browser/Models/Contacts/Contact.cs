@@ -51,7 +51,7 @@
         {
             var returns = new List<Contact>();
 
-            var extendedCommand = @"select ABPerson.ROWID
+            const string extendedCommand = @"select ABPerson.ROWID
      , ABPerson.first as First
      , ABPerson.last as Last
      , ABPerson.Organization as organization

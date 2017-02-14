@@ -96,6 +96,12 @@
     <Compile Include="App Controls\Notes.Designer.cs">
       <DependentUpon>Notes.cs</DependentUpon>
     </Compile>
+    <Compile Include="App Controls\Photos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="App Controls\Photos.Designer.cs">
+      <DependentUpon>Photos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -109,6 +115,7 @@
     <Compile Include="Models\Contacts\Contact.cs" />
     <Compile Include="Models\MChat.cs" />
     <Compile Include="Models\MNotes.cs" />
+    <Compile Include="Models\Photo.cs" />
     <Compile Include="PList.cs" />
     <Compile Include="Preferences.cs">
       <SubType>Form</SubType>
@@ -132,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="App Controls\Notes.resx">
       <DependentUpon>Notes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App Controls\Photos.resx">
+      <DependentUpon>Photos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

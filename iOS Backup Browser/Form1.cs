@@ -143,7 +143,10 @@
                     // TODO: Load Internet panel
                     break;
                 case "Photos":
-                    // TODO: Load Photos panel
+                    // Load the Photos Panel
+                    var photosPanel = new App_Controls.Photos();
+                    photosPanel.SetBackup(currentBackup, _backupDirectory);
+                    LoadPanel(photosPanel);
                     break;
                 case "Applications":
                     // TODO: Load Applications panel
