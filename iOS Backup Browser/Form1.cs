@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Windows.Forms;
@@ -81,7 +83,15 @@
         {
             panel.Dock = DockStyle.Fill;
             splitContainer1.Panel2.Controls.Clear();
-            splitContainer1.Panel2.Controls.Add(panel);
+            try
+            {
+                splitContainer1.Panel2.Controls.Add(panel);
+            }
+            catch (Win32Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                Debug.WriteLine(e.StackTrace);
+            }
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)

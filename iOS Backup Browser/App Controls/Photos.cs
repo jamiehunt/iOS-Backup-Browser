@@ -30,7 +30,7 @@
 
                 flowLayoutPanel1.SuspendLayout();
 
-                foreach (var photo in photos.Where(x => x.Filename.Contains("DCIM") && !x.Filename.Contains("MOV")))
+                foreach (var photo in photos.Where(x => x.Filename.Contains("DCIM") && !x.Filename.Contains("MOV") && !x.Filename.ToUpperInvariant().Contains("MP4")))
                 {
                     var filenameOnDisk = fileLocation + "\\" + backup.BackupUid + "\\" + photo.FileNameDisk;
                     var photoElement = new PhotoElement(filenameOnDisk, photo.Filename);
@@ -44,7 +44,7 @@
                 flowLayoutPanel1.AutoScroll = true;
 
                 var bw = new BackgroundWorker();
-
+                
                 bw.DoWork += delegate
                 {
                     foreach (var photoElement in photoElements)
@@ -52,16 +52,15 @@
                         photoElement.InitializeImage();
                     }
                 };
-
+                
                 bw.RunWorkerAsync();
-
             }
             else
             {
                 MessageBox.Show("Could not load photos");
             }
         }
-
+        
         public bool ThumbCallback()
         {
             return false;
