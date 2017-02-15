@@ -1,7 +1,8 @@
 ﻿namespace iOS_Backup_Browser.App_Controls
 {
+    using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Data.SQLite;
-    using System.Drawing;
     using System.IO;
     using System.Linq;
     using System.Windows.Forms;
@@ -11,7 +12,10 @@
         public Photos()
         {
             InitializeComponent();
+            photoElements = new List<PhotoElement>();
         }
+
+        private List<PhotoElement> photoElements;
 
         public void SetBackup(iOS_Backup backup, string fileLocation)
         {
@@ -23,23 +27,44 @@
                 dbConnection.Open();
 
                 var photos = Models.Photo.Load(dbConnection);
-                foreach (var photo in photos.Where(x => x.Filename.Contains("DCIM") && !x.Filename.Contains("MOV")).Take(50))
+
+                flowLayoutPanel1.SuspendLayout();
+
+                foreach (var photo in photos.Where(x => x.Filename.Contains("DCIM") && !x.Filename.Contains("MOV")))
                 {
-                    imageList1.Images.Add(Image.FromFile(fileLocation + "\\" + backup.BackupUid + "\\" + photo.FileNameDisk));
+                    var filenameOnDisk = fileLocation + "\\" + backup.BackupUid + "\\" + photo.FileNameDisk;
+                    var photoElement = new PhotoElement(filenameOnDisk, photo.Filename);
+
+                    photoElements.Add(photoElement);
+                    flowLayoutPanel1.Controls.Add(photoElement);
                 }
 
-                for (var i = 0; i < imageList1.Images.Count; i++)
-                {
-                    var item = new ListViewItem();
-                    item.ImageIndex = i;
+                flowLayoutPanel1.ResumeLayout(true);
 
-                    listView1.Items.Add(item);
-                }
+                flowLayoutPanel1.AutoScroll = true;
+
+                var bw = new BackgroundWorker();
+
+                bw.DoWork += delegate
+                {
+                    foreach (var photoElement in photoElements)
+                    {
+                        photoElement.InitializeImage();
+                    }
+                };
+
+                bw.RunWorkerAsync();
+
             }
             else
             {
                 MessageBox.Show("Could not load photos");
             }
+        }
+
+        public bool ThumbCallback()
+        {
+            return false;
         }
     }
 }
