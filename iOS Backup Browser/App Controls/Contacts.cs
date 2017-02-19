@@ -1,42 +1,42 @@
 ﻿namespace iOS_Backup_Browser.App_Controls
 {
+    using iOS_Backup_Browser.Constants;
+    using iOS_Backup_Browser.Services;
     using System;
-    using System.Data.SQLite;
-    using System.IO;
     using System.Linq;
     using System.Windows.Forms;
     using Properties;
 
     public partial class Contacts : UserControl
     {
-        public Contacts()
+        private readonly IBackupFileService _backupFileService;
+        public Contacts(IBackupFileService backupFileService)
         {
+            _backupFileService = backupFileService;
+
             InitializeComponent();
         }
 
         public void SetBackup(iOS_Backup backup, string fileLocation)
         {
-            var addressBookPath = Path.Combine(fileLocation, backup.BackupUid, "31bb7ba8914766d4ba40d6dfb6113c8b614be442");
-
-            if (!File.Exists(addressBookPath))
+            try
             {
-                addressBookPath = Path.Combine(fileLocation, backup.BackupUid, "31\\", "31bb7ba8914766d4ba40d6dfb6113c8b614be442");
-            }
-
-            if (File.Exists(addressBookPath))
-            {
-                var dbConnection = new SQLiteConnection($"Data Source={addressBookPath};Version=3;");
-                dbConnection.Open();
-
-                var contacts = Models.Contacts.Contact.Load(dbConnection);
-                foreach (var contact in contacts.OrderBy(x => x.DisplayName))
+                using (var dbConnection = _backupFileService.GetFileAsSQLiteConnection(backup, fileLocation, iOSBackupFile.iOSBackupFileName.AddressBookDb))
                 {
-                    contactsList.Items.Add(contact);
+                    dbConnection.Open();
+
+                    var contacts = Models.Contacts.Contact.Load(dbConnection);
+                    foreach (var contact in contacts.OrderBy(x => x.DisplayName))
+                    {
+                        contactsList.Items.Add(contact);
+                    }
+
+                    dbConnection.Close();
                 }
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show(Resources.Contacts_Could_not_load_address_book);
+                MessageBox.Show(Resources.Contacts_Could_not_load_address_book + Environment.NewLine + e.Message);
             }
         }
 

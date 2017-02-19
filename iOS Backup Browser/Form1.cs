@@ -1,5 +1,6 @@
 ﻿namespace iOS_Backup_Browser
 {
+    using iOS_Backup_Browser.Services;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -119,7 +120,7 @@
             {
                 case "Contacts":
                     // Load contacts panel
-                    var contactsPanel = new App_Controls.Contacts();
+                    var contactsPanel = new App_Controls.Contacts(new BackupFileService());
                     statusLabel.Text += " - Contacts";
                     contactsPanel.SetBackup(currentBackup, _backupDirectory);
                     LoadPanel(contactsPanel);
