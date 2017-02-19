@@ -35,6 +35,8 @@
             this.lblJobTitle = new System.Windows.Forms.Label();
             this.lblDisplayName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnExportCsv = new System.Windows.Forms.Button();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -54,6 +56,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.btnExportCsv);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.lblOrganization);
             this.splitContainer1.Panel2.Controls.Add(this.lblJobTitle);
@@ -75,9 +78,10 @@
             // 
             // label1
             // 
+            this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(0, 103);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(387, 89);
+            this.label1.Size = new System.Drawing.Size(262, 65);
             this.label1.TabIndex = 4;
             this.label1.Text = "TODO: \r\n             Display contact numbers, emails, address. \r\n             Loa" +
     "d photo. \r\n             Allow exporting of contacts to various formats.\r\n       " +
@@ -121,6 +125,20 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // btnExportCsv
+            // 
+            this.btnExportCsv.Location = new System.Drawing.Point(11, 373);
+            this.btnExportCsv.Name = "btnExportCsv";
+            this.btnExportCsv.Size = new System.Drawing.Size(92, 23);
+            this.btnExportCsv.TabIndex = 5;
+            this.btnExportCsv.Text = "Export to CSV";
+            this.btnExportCsv.UseVisualStyleBackColor = true;
+            this.btnExportCsv.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.Filter = "CSV Files|*.csv";
+            // 
             // Contacts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -148,5 +166,7 @@
         private System.Windows.Forms.Label lblDisplayName;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnExportCsv;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }

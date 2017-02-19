@@ -78,6 +78,7 @@
     <Compile Include="App Controls\Contacts.Designer.cs">
       <DependentUpon>Contacts.cs</DependentUpon>
     </Compile>
+    <Compile Include="App Controls\IMessagesView.cs" />
     <Compile Include="App Controls\Info.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -90,6 +91,7 @@
     <Compile Include="App Controls\Messages.Designer.cs">
       <DependentUpon>Messages.cs</DependentUpon>
     </Compile>
+    <Compile Include="App Controls\MessagesPresenter.cs" />
     <Compile Include="App Controls\Notes.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -118,6 +120,7 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="iOS_Backup.cs" />
+    <Compile Include="Models\IMessagesRepository.cs" />
     <Compile Include="Models\MCallHistory.cs" />
     <Compile Include="Models\Contacts\Contact.cs" />
     <Compile Include="Models\MChat.cs" />

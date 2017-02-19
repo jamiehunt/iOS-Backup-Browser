@@ -1,38 +1,25 @@
 ﻿namespace iOS_Backup_Browser.App_Controls
 {
     using System;
-    using System.IO;
     using System.Linq;
     using System.Windows.Forms;
     using iOS_Backup_Browser.Models;
 
-    public partial class Messages : UserControl
+    public partial class Messages : UserControl, IMessagesView
     {
         public Messages()
         {
             InitializeComponent();
         }
 
-        public void SetBackup(iOS_Backup backup, string fileLocation)
-        {
-            var messagesPath = Path.Combine(fileLocation, backup.BackupUid, "3d0d7e5fb2ce288813306e4d4636395e047a3d28");
-            if (!File.Exists(messagesPath))
-            {
-                messagesPath = Path.Combine(fileLocation, backup.BackupUid, "3d\\", "3d0d7e5fb2ce288813306e4d4636395e047a3d28");
-            }
+        public MessagesPresenter Presenter { private get; set; }
 
-            var chats = MChat.Load(messagesPath);
-
-            foreach (var chat in chats)
-            {
-                messagesList.Items.Add(chat);
-            }
-        }
+        public ListBox MessagesList { get; set; }
 
         private void messagesList_SelectedIndexChanged(object sender, EventArgs e)
         {
             messagesArea.Text = string.Empty;
-            var chat = messagesList.SelectedItem as MChat;
+            var chat = MessagesList.SelectedItem as MChat;
 
             if (chat == null)
             {

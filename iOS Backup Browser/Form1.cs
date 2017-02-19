@@ -1,5 +1,6 @@
 ﻿namespace iOS_Backup_Browser
 {
+    using iOS_Backup_Browser.App_Controls;
     using iOS_Backup_Browser.Services;
     using System;
     using System.Collections.Generic;
@@ -134,9 +135,11 @@
                     break;
                 case "Messages":
                     // Load Messages panel
-                    var messagesPanel = new App_Controls.Messages();
-                    messagesPanel.SetBackup(currentBackup, _backupDirectory);
-                    LoadPanel(messagesPanel);
+                    var view = new App_Controls.Messages();
+                    var presenter = new MessagesPresenter(view, null);
+                    presenter.LoadBackup(currentBackup, _backupDirectory);
+
+                    LoadPanel(view);
                     break;
                 case "Notes":
                     // Load Notes panel
